@@ -1,15 +1,13 @@
-# from model.students import Address
 
 def bookEntity(item) -> dict :
     return {
         "id" : str(item["_id"]),
         "title" : item["title"],
         "author" : item["author"],
-        "year" : item["year"]
+        "year" : item["year"],
+        "available" : item["available"]
     }
 
-def bookConverter(items) -> list:
-    return [bookEntity(item) for item in items]
 
 def Address(item) -> dict :
     return {
@@ -24,6 +22,4 @@ def studentsEntity(item) -> dict :
         "age" : item["age"],
         "address" : Address(item["address"])
     }
-  
-def studentsConverter(items) -> list:
-    return [studentsEntity(item) for item in items]  
+   
