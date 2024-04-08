@@ -142,10 +142,11 @@ async def update_student(id : str, name : str = Query(None), age : int = Query(N
             new_address["country"] = country
         
         student["address"] = new_address
+        query["address"] = new_address
         
     if query:
         result = students_collection.update_one({"_id" : ObjectId(id)}, {"$set" : student})
-        
+        print(student["address"])        
         if result.modified_count == 0:
             raise HTTPException(status_code=404, detail="student not found")
         
