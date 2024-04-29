@@ -7,8 +7,8 @@ from fastapi.responses import JSONResponse
 load_dotenv()
 
 redis_client = None
-MAX_REQUEST = 5
-TIME_LIMIT = 120
+MAX_REQUEST = 100
+TIME_LIMIT = 60*60*24
 
 def get_redis_client():
     global redis_client
@@ -61,5 +61,6 @@ def get_api_limits(ip):
 
     remaining_requests = MAX_REQUEST - int(redis_client.get(key) or 0)
     reset_time = redis_client.ttl(key)
-
-    return {"remaining_requests": remaining_requests, "reset_time": reset_time}
+    remaining_time = "{:.2f}".format(reset_time/(3600)
+)
+    return {"remaining_requests": remaining_requests, "reset_time": f'{remaining_time} hours'}
