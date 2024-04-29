@@ -14,7 +14,7 @@ async def rate_limit(request : Request, call_next):
 
 @app.get("/")
 def read_root():
-    return {"Hello, My name is Faishal Rahman, migrate to endoints - '/books' or '/students' and '/api/limits' to know your api requests limit"}
+    return {"Hello, My name is Faishal Rahman, migrate to endpoints - '/books' or '/students' and '/api/limits' to know your api requests limit"}
 
 app.include_router(book)
 app.include_router(student)
